@@ -6,20 +6,21 @@ int main()
        Write a program that prints its input one word per line.
     */
     printf("Input text (press ctrl+d to end):\n");
-    int c, in, out, state = 0;
-    in = 1;
+    int c, in = 1, out = 0, state = 0;
     
     while ((c = getchar()) != EOF)
     {
-        if (c == ' ' || c == '\t')
+        if (state == in && (c == ' ' || c == '\n' || c == '\t'))
+        {
+            printf("\n");
             state = out;
-        else if (state == out)
+        }
+        if (c == ' ' || c == '\n' || c == '\t')
+            state = out;
+        else
         {
             state = in;
-            printf("\n");
             putchar(c);
         }
-        else
-            putchar(c);
     }
 }

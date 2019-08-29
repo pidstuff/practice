@@ -38,17 +38,11 @@ int get_line(char s[], int lim)
     i = m = 0;
     while ((c = getchar()) != EOF && c != '\n')
     {
-        if (i < lim - 2)
+        if (i < lim - 1)
         {
             s[i] = c;
             ++i;
         }
-        ++m;
-    }
-    if (c == '\n')
-    {
-        s[i] = c;
-        ++i;
         ++m;
     }
     s[i] = '\0';

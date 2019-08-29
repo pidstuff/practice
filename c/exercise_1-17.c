@@ -14,7 +14,6 @@ int main()
     int i;
     int len;
     char line[MAXLINE];
-    char longest[MAXLINE];
     
     while ((len = get_line(line, MAXLINE)) > 0)
     {

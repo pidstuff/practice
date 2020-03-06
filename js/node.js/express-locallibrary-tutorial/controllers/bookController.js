@@ -257,19 +257,19 @@ exports.book_update_post = [
             }, (err, results) => {
                 if (err) { return next(err) }
                 
-            for (let i = 0; i < results.genres.length; i++) {
-                if (book.genre.indexOf(results.genres[i]._id) > -1) {
-                    results.genres[i].checked = 'true';
+                for (let i = 0; i < results.genres.length; i++) {
+                    if (book.genre.indexOf(results.genres[i]._id) > -1) {
+                        results.genres[i].checked = 'true';
+                    }
                 }
-            }
             
-            res.render('book_form', {
-                title: 'Update Book',
-                authors: results.authors,
-                genres: results.genres,
-                book: book,
-                errors: errors.array()
-            });
+                res.render('book_form', {
+                    title: 'Update Book',
+                    authors: results.authors,
+                    genres: results.genres,
+                    book: book,
+                    errors: errors.array()
+                });
             
             });
             return;

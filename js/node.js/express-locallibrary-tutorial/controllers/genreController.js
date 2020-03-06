@@ -21,12 +21,10 @@ exports.genre_list = (req, res) => {
 exports.genre_detail = (req, res, next) => {
     async.parallel({
         genre: (callback) => {
-            Genre.findById(req.params.id)
-                .exec(callback);
+            Genre.findById(req.params.id).exec(callback);
         },
         genre_books: (callback) => {
-            Book.find({ 'genre': req.params.id })
-                .exec(callback);
+            Book.find({ 'genre': req.params.id }).exec(callback);
         },
     }, (err, results) => {
         if (err) { return next(err) }
@@ -105,7 +103,7 @@ exports.genre_delete_post = (req, res) => {
 
 // Display Genre update form on GET.
 exports.genre_update_get = (req, res) => {
-    res.send('NOT IMPLEMENTED: Genre update GET');
+    res.send('NOT IMPLEMENTED: Genre update POST');
 };
 
 // Handle Genre update on POST.

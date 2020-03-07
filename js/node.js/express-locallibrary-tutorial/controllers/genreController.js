@@ -142,7 +142,7 @@ exports.genre_update_post = [
         }
         else {
             Genre.findByIdAndUpdate(req.params.id, genre, {}, (err, thegenre) => {
-                if (err) { next(err) }
+                if (err) { return next(err) }
                 res.redirect(thegenre.url);
             });
         }

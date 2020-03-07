@@ -31,6 +31,14 @@ AuthorSchema.virtual('lifespan').get( function() {
     return `${dob} - ${dod}`;
 });
 
+AuthorSchema.virtual('dod_input').get( function() {
+    return moment(this.date_of_death).format('YYYY-MM-DD');
+});
+
+AuthorSchema.virtual('dob_input').get( function() {
+    return moment(this.date_of_birth).format('YYYY-MM-DD');
+});
+
 // virtual for author's URL
 AuthorSchema.virtual('url').get( function() { return `/catalog/author/${this._id}`; });
 

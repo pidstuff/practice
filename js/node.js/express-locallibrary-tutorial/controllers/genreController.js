@@ -3,7 +3,7 @@ const Book = require('../models/book');
 const async = require('async');
 const validator = require('express-validator');
 
-// Display list of all Genre.
+// Display list of all Genre
 exports.genre_list = (req, res) => {
     Genre.find()
         .populate('genre')
@@ -17,7 +17,7 @@ exports.genre_list = (req, res) => {
         });
 };
 
-// Display detail page for a specific Genre.
+// Display detail page for a specific Genre
 exports.genre_detail = (req, res, next) => {
     async.parallel({
         genre: (callback) => {
@@ -42,12 +42,12 @@ exports.genre_detail = (req, res, next) => {
     });
 };
 
-// Display Genre create form on GET.
+// Display Genre create form on GET
 exports.genre_create_get = (req, res) => {
     res.render('genre_form', { title: 'Create Genre' });
 };
 
-// Handle Genre create on POST.
+// Handle Genre create on POST
 exports.genre_create_post = [
     // validate that the name field is not empty
     validator.body('name', 'Genre name required').trim().isLength({ min: 1 }),
@@ -91,7 +91,7 @@ exports.genre_create_post = [
         }
     }
 ];
-// Display Genre delete form on GET.
+// Display Genre delete form on GET
 exports.genre_delete_get = (req, res) => {
     async.parallel({
         genre: (callback) => {
@@ -116,7 +116,7 @@ exports.genre_delete_get = (req, res) => {
     });
 };
 
-// Handle Genre delete on POST.
+// Handle Genre delete on POST
 exports.genre_delete_post = (req, res) => {
     async.parallel({
         genre: (callback) => {
@@ -144,7 +144,7 @@ exports.genre_delete_post = (req, res) => {
     });
 };
 
-// Display Genre update form on GET.
+// Display Genre update form on GET
 exports.genre_update_get = (req, res) => {
     async.parallel({
         genre: (callback) => {
@@ -161,7 +161,7 @@ exports.genre_update_get = (req, res) => {
     });
 };
 
-// Handle Genre update on POST.
+// Handle Genre update on POST
 exports.genre_update_post = [
     validator.body('name', 'Genre name required').trim().isLength({ min: 1 }),
     

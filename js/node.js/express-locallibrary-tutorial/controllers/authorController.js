@@ -229,4 +229,3 @@ exports.author_update_post = [
         }
     }
 ];
-

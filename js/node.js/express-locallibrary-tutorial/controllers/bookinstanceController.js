@@ -3,7 +3,7 @@ const Book = require('../models/book');
 const { body,validationResult } = require('express-validator');
 const async = require('async');
 
-// Display list of all BookInstances.
+// Display list of all BookInstances
 exports.bookinstance_list = (req, res) => {
     BookInstance.find()
         .populate('book')
@@ -16,7 +16,7 @@ exports.bookinstance_list = (req, res) => {
         });
 };
 
-// Display detail page for a specific BookInstance.
+// Display detail page for a specific BookInstance
 exports.bookinstance_detail = (req, res, next) => {
     BookInstance.findById(req.params.id)
         .populate('book')
@@ -34,7 +34,7 @@ exports.bookinstance_detail = (req, res, next) => {
         });
 };
 
-// Display BookInstance create form on GET.
+// Display BookInstance create form on GET
 exports.bookinstance_create_get = (req, res, next) => {
     Book.find({}, 'title').exec( (err, books) => {
         if (err) { return next(err) }
@@ -45,7 +45,7 @@ exports.bookinstance_create_get = (req, res, next) => {
     });
 };
 
-// Handle BookInstance create on POST.
+// Handle BookInstance create on POST
 exports.bookinstance_create_post = [
     //validate fields
     body('book', 'Book must be specified').trim().isLength({ min: 1 }),
@@ -93,7 +93,7 @@ exports.bookinstance_create_post = [
     }
 ];
 
-// Display BookInstance delete form on GET.
+// Display BookInstance delete form on GET
 exports.bookinstance_delete_get = (req, res) => {
     BookInstance.findById(req.params.id)
         .populate('book')
@@ -111,7 +111,7 @@ exports.bookinstance_delete_get = (req, res) => {
         });
 };
 
-// Handle BookInstance delete on POST.
+// Handle BookInstance delete on POST
 exports.bookinstance_delete_post = (req, res) => {
     BookInstance.findByIdAndRemove(req.body.bookinstanceid, (err) => {
         if (err) { return next(err) }
@@ -119,7 +119,7 @@ exports.bookinstance_delete_post = (req, res) => {
     });
 };
 
-// Display BookInstance update form on GET.
+// Display BookInstance update form on GET
 exports.bookinstance_update_get = (req, res) => {
     async.parallel({
         bookinstance: (callback) => {
@@ -138,7 +138,7 @@ exports.bookinstance_update_get = (req, res) => {
     });
 };
 
-// Handle bookinstance update on POST.
+// Handle bookinstance update on POST
 exports.bookinstance_update_post = [
     //validate fields
     body('book', 'Book must be specified').trim().isLength({ min: 1 }),
